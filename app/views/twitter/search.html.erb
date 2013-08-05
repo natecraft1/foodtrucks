@@ -1,0 +1,7 @@
+Search for "<%= @query %>"
+<% @tweets.each do |tweet| %>
+<p>
+	<%= image_tag tweet['user']['profile_image_url'] %>
+	<%= tweet['text'] %>
+</p>
+<% end %>
