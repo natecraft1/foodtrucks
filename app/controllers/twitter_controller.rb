@@ -8,27 +8,35 @@ class TwitterController < ApplicationController
     @query = CGI::escape params[:q]
     
     # the base url of the twitter search api
-    baseurl = 'https://api.twitter.com/1.1/search/tweets.json'
+    # baseurl = 'https://api.twitter.com/1.1/search/tweets.json'
+    baseurl = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
     
     # build a request url using the user-specified query
-    url = baseurl + '?q=' + @query
+    url = baseurl + '?screen_name=' + @query
 
     # initialize an empty array to hold the tweets
     @tweets = []
     
     # use the getTwitterData method to perform the request and return the response
     data = getTwitterData(url)
+    #puts data
     
     # push each response into the @tweets array
-    data['statuses'].each do |status|
+    data.each do |status|
+      unless status['geo'].nil?
+        puts status['geo']
+      else
+        puts 'no info'
+      end
       @tweets.push status
     end
+    render json: @tweets
     
     # get the url of the next page of results
-    next_page_url = data['search_metadata']['next_results']
+    #next_page_url = data['search_metadata']['next_results']
     
     # build a url which we could use to get another page of data
-    url = baseurl + next_page_url
+    #url = baseurl + next_page_url
 
     # uncomment the next line to dump out @tweets as json for debugging
     # render json: @tweets
