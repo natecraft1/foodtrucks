@@ -1,6 +1,5 @@
 class Location
   include MongoMapper::Document
-  include Geocoder::Model::Mongoid
 
   key :text, String
   key :latitude, String

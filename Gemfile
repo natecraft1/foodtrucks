@@ -7,7 +7,6 @@ gem 'oauth'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
-gem 'geocoder'
 gem 'mongo'
 gem 'mongo_mapper', git: 'git@github.com:mongomapper/mongomapper.git'
 gem 'bson_ext'
