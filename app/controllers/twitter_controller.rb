@@ -24,11 +24,8 @@ class TwitterController < ApplicationController
     # push each response into the @tweets array
     data.each do |status|
       unless status['geo'].nil?
-        puts status['geo']
-      else
-        puts 'no info'
+            @tweets.push status
       end
-      @tweets.push status
     end
     render json: @tweets
     
