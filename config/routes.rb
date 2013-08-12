@@ -1,7 +1,9 @@
 OauthExample::Application.routes.draw do
+  get "foodtrucks/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   get 'search/:q' => 'twitter#search'
+  root 'foodtrucks#show'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
