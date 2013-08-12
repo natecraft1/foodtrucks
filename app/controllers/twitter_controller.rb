@@ -19,16 +19,15 @@ class TwitterController < ApplicationController
     
     # use the getTwitterData method to perform the request and return the response
     data = getTwitterData(url)
-    #puts data
+    puts data
     
     # push each response into the @tweets array
     data.each do |status|
       unless status['geo'].nil?
             @tweets.push status
-
       end
     end
-    render json: @tweets
+    # render json: @twitterets
     
     # get the url of the next page of results
     #next_page_url = data['search_metadata']['next_results']

@@ -8,19 +8,33 @@
  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
 		function initialize() {
-		  var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-		  var mapOptions = {
+			places = [];
+			<% @tweets.each do |tweet| %>
+				lat = <%= tweet['geo']['coordinates'][0] %>
+				lng = <%= tweet['geo']['coordinates'][1] %>
+				myLatlng = new google.maps.LatLng(lat, lng);
+				places.push(myLatlng);
+				<% puts @tweets.length %>
+			<% end %>
+			var mapOptions = {
 		    zoom: 4,
 		    center: myLatlng,
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 		  }
 		  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+		  for (i in places)
+		  {
+
+
 		  var marker = new google.maps.Marker({
-		      position: myLatlng,
+		      position: places[i],
 		      map: map,
 		      title: 'Hello World!'
+
 		  });
+		}
+		   
 		}
 
 		google.maps.event.addDomListener(window, 'load', initialize);
