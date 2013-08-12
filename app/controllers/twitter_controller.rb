@@ -25,6 +25,7 @@ class TwitterController < ApplicationController
     data.each do |status|
       unless status['geo'].nil?
             @tweets.push status
+
       end
     end
     render json: @tweets
